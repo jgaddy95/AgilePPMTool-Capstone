@@ -1,4 +1,4 @@
-package io.hcl.ppmtool.exceptions;
+package io.hcl.ppmtool.ppmtool.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +15,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     @ExceptionHandler
     public final ResponseEntity<Object> handleProjectIdException(ProjectIdException ex, WebRequest request){
         ProjectIdExceptionResponse exceptionResponse = new ProjectIdExceptionResponse(ex.getMessage());
-        return new ResponseEntity(exceptionResponse, HttpStatus.CREATED);
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
+
 }

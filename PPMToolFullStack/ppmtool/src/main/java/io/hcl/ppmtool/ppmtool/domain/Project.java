@@ -1,4 +1,4 @@
-package io.hcl.ppmtool.domain;
+package io.hcl.ppmtool.ppmtool.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -15,9 +15,9 @@ public class Project {
     private Long id;
     @NotBlank(message = "Project name is required")
     private String projectName;
-    @NotBlank(message = "Project identifier is required")
-    @Size(min = 4,max = 5, message = "Please use 4 to 5 characters")
-    @Column(updatable = false,unique = true)
+    @NotBlank(message ="Project Identifier is required")
+    @Size(min=4, max=5, message = "Please use 4 to 5 characters")
+    @Column(updatable = false, unique = true)
     private String projectIdentifier;
     @NotBlank(message = "Project description is required")
     private String description;
@@ -25,14 +25,17 @@ public class Project {
     private Date start_date;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date end_date;
-
     @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(updatable = false)
-    private Date created_at;
+    private Date created_At;
     @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date updated_at;
+    private Date updated_At;
 
-    public Project(){
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "project")
+
+    private Backlog backlog;
+
+    public Project() {
     }
 
     public Long getId() {
@@ -83,33 +86,39 @@ public class Project {
         this.end_date = end_date;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreated_At() {
+        return created_At;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreated_At(Date created_At) {
+        this.created_At = created_At;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdated_At() {
+        return updated_At;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdated_At(Date updated_At) {
+        this.updated_At = updated_At;
+    }
+
+    public Backlog getBacklog() {
+        return backlog;
+    }
+
+    public void setBacklog(Backlog backlog) {
+        this.backlog = backlog;
     }
 
     @PrePersist
     protected void onCreate(){
-        this.created_at = new Date();
+        this.created_At = new Date();
     }
 
     @PreUpdate
     protected void onUpdate(){
-        this.updated_at = new Date();
+        this.updated_At = new Date();
     }
 
-
-
-
 }
+

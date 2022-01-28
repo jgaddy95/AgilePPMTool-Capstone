@@ -1,4 +1,5 @@
-package io.hcl.ppmtool.domain;
+package io.hcl.ppmtool.ppmtool.domain;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,12 +19,12 @@ public class ProjectTask {
     private String status;
     private Integer priority;
     private Date dueDate;
-    //Many to one with Backlog
+    //ManyToOne with Backlog
 
     @Column(updatable = false)
-    private String projectIdentifier;
-    private Date create_at;
-    private Date update_at;
+    private String projectIdentifer;
+    private Date create_At;
+    private Date update_At;
 
     public ProjectTask() {
     }
@@ -85,37 +86,37 @@ public class ProjectTask {
     }
 
     public String getProjectIdentifier() {
-        return projectIdentifier;
+        return projectIdentifer;
     }
 
     public void setProjectIdentifier(String projectIdentifier) {
-        this.projectIdentifier = projectIdentifier;
+        this.projectIdentifer = projectIdentifer;
     }
 
-    public Date getCreate_at() {
-        return create_at;
+    public Date getCreate_At() {
+        return create_At;
     }
 
-    public void setCreate_at(Date create_at) {
-        this.create_at = create_at;
+    public void setCreate_At(Date create_At) {
+        this.create_At = create_At;
     }
 
-    public Date getUpdate_at() {
-        return update_at;
+    public Date getUpdate_At() {
+        return update_At;
     }
 
-    public void setUpdate_at(Date update_at) {
-        this.update_at = update_at;
+    public void setUpdate_At(Date update_At) {
+        this.update_At = update_At;
     }
 
     @PrePersist
     protected void onCreate(){
-        this.create_at= new Date();
+        this.create_At = new Date();
     }
 
     @PreUpdate
     protected void onUpdate(){
-        this.update_at = new Date();
+        this.update_At = new Date();
     }
 
     @Override
@@ -128,9 +129,9 @@ public class ProjectTask {
                 ", status='" + status + '\'' +
                 ", priority=" + priority +
                 ", dueDate=" + dueDate +
-                ", projectIdentifier='" + projectIdentifier + '\'' +
-                ", create_at=" + create_at +
-                ", update_at=" + update_at +
+                ", projectIdentifier='" + projectIdentifer + '\'' +
+                ", create_At=" + create_At +
+                ", update_At=" + update_At +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
-package io.hcl.ppmtool.repositories;
+package io.hcl.ppmtool.ppmtool.repositories;
 
-import io.hcl.ppmtool.domain.Project;
+import io.hcl.ppmtool.ppmtool.domain.Project;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

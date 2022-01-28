@@ -1,4 +1,4 @@
-package io.hcl.ppmtool;
+package io.hcl.ppmtool.ppmtool;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class PpmtoolApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PpmtoolApplication.class, args);
 	}
-
 }
