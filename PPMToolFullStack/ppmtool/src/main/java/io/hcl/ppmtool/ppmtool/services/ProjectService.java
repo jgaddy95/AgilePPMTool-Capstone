@@ -2,6 +2,7 @@ package io.hcl.ppmtool.ppmtool.services;
 
 import io.hcl.ppmtool.ppmtool.domain.Backlog;
 import io.hcl.ppmtool.ppmtool.domain.Project;
+import io.hcl.ppmtool.ppmtool.domain.ProjectTask;
 import io.hcl.ppmtool.ppmtool.exceptions.ProjectIdException;
 import io.hcl.ppmtool.ppmtool.repositories.BacklogRepository;
 import io.hcl.ppmtool.ppmtool.repositories.ProjectRepository;
@@ -68,5 +69,7 @@ public class ProjectService {
 
         projectRepository.delete(project);
     }
+
+
 
 }
