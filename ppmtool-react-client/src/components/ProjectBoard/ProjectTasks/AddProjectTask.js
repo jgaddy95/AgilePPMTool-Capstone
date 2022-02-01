@@ -17,7 +17,7 @@ class AddProjectTask extends Component {
       priority: 0,
       dueDate: "",
       projectIdentifier: id,
-      errors: {},
+      errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -29,14 +29,11 @@ class AddProjectTask extends Component {
     }
   }
 
-  //on change
-
+  // on change
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
   //on submit
-
   onSubmit(e) {
     e.preventDefault();
 
@@ -45,7 +42,7 @@ class AddProjectTask extends Component {
       acceptanceCriteria: this.state.acceptanceCriteria,
       status: this.state.status,
       priority: this.state.priority,
-      dueDate: this.state.dueDate,
+      dueDate: this.state.dueDate
     };
     this.props.addProjectTask(
       this.state.projectIdentifier,
@@ -72,7 +69,7 @@ class AddProjectTask extends Component {
                   <input
                     type="text"
                     className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.summary,
+                      "is-invalid": errors.summary
                     })}
                     name="summary"
                     placeholder="Project Task summary"
@@ -90,7 +87,7 @@ class AddProjectTask extends Component {
                     name="acceptanceCriteria"
                     value={this.state.acceptanceCriteria}
                     onChange={this.onChange}
-                  ></textarea>
+                  />
                 </div>
                 <h6>Due Date</h6>
                 <div className="form-group">
@@ -145,11 +142,14 @@ class AddProjectTask extends Component {
 
 AddProjectTask.propTypes = {
   addProjectTask: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  errors: state.errors,
+const mapStateToProps = state => ({
+  errors: state.errors
 });
 
-export default connect(mapStateToProps, { addProjectTask })(AddProjectTask);
+export default connect(
+  mapStateToProps,
+  { addProjectTask }
+)(AddProjectTask);
