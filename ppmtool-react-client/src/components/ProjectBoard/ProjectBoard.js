@@ -7,7 +7,6 @@ import { getBacklog } from "../../actions/backlogActions";
 
 class ProjectBoard extends Component {
   //constructor to handle errors
-
   constructor() {
     super();
     this.state = {
@@ -20,7 +19,7 @@ class ProjectBoard extends Component {
     this.props.getBacklog(id);
   }
 
-  componenentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
@@ -44,7 +43,7 @@ class ProjectBoard extends Component {
         } else {
           return (
             <div className="alert alert-info text-center" role="alert">
-              No Project Tasks on this Board
+              No Project Tasks on this board
             </div>
           );
         }
