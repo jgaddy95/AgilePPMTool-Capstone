@@ -7,6 +7,8 @@ import io.agileintelligence.ppmtool.security.JwtTokenProvider;
 import io.agileintelligence.ppmtool.services.MapValidationErrorService;
 import io.agileintelligence.ppmtool.services.UserService;
 import io.agileintelligence.ppmtool.validator.UserValidator;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,7 @@ import static io.agileintelligence.ppmtool.security.SecurityConstants.TOKEN_PREF
 
 @RestController
 @RequestMapping("/api/users")
+@Tag(name = "User")
 public class UserController {
 
     @Autowired
@@ -46,6 +49,7 @@ public class UserController {
 
 
     @PostMapping("/login")
+    @Operation(summary = "Authenticate user")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null) return errorMap;
@@ -64,6 +68,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
+    @Operation(summary = "Register user")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
         // Validate passwords match
         userValidator.validate(user,result);
