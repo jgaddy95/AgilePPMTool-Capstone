@@ -3,6 +3,8 @@ package io.agileintelligence.ppmtool.web;
 import io.agileintelligence.ppmtool.domain.ProjectTask;
 import io.agileintelligence.ppmtool.services.MapValidationErrorService;
 import io.agileintelligence.ppmtool.services.ProjectTaskService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import java.security.Principal;
 @RestController
 @RequestMapping("/api/backlog")
 @CrossOrigin
+@Tag(name = "Backlog")
 public class BacklogController {
 
     @Autowired
@@ -25,6 +28,7 @@ public class BacklogController {
 
 
     @PostMapping("/{backlog_id}")
+    @Operation(summary = "Add project task to backlog")
     public ResponseEntity<?> addPTtoBacklog(@Valid @RequestBody ProjectTask projectTask,
                                             BindingResult result, @PathVariable String backlog_id, Principal principal){
         //show delete
@@ -40,6 +44,7 @@ public class BacklogController {
     }
 
     @GetMapping("/{backlog_id}")
+    @Operation(summary = "Get project backlog")
     public Iterable<ProjectTask> getProjectBacklog(@PathVariable String backlog_id, Principal principal){
 
         return projectTaskService.findBacklogById(backlog_id, principal.getName());
@@ -47,6 +52,7 @@ public class BacklogController {
     }
 
     @GetMapping("/{backlog_id}/{pt_id}")
+    @Operation(summary = "Get project task")
     public ResponseEntity<?> getProjectTask(@PathVariable String backlog_id, @PathVariable String pt_id, Principal principal){
         ProjectTask projectTask = projectTaskService.findPTByProjectSequence(backlog_id, pt_id, principal.getName());
         return new ResponseEntity<ProjectTask>( projectTask, HttpStatus.OK);
@@ -54,6 +60,7 @@ public class BacklogController {
 
 
     @PatchMapping("/{backlog_id}/{pt_id}")
+    @Operation(summary = "Update project task")
     public ResponseEntity<?> updateProjectTask(@Valid @RequestBody ProjectTask projectTask, BindingResult result,
                                                @PathVariable String backlog_id, @PathVariable String pt_id, Principal principal ){
 
@@ -68,6 +75,7 @@ public class BacklogController {
 
 
     @DeleteMapping("/{backlog_id}/{pt_id}")
+    @Operation(summary = "Delete project task")
     public ResponseEntity<?> deleteProjectTask(@PathVariable String backlog_id, @PathVariable String pt_id, Principal principal){
         projectTaskService.deletePTByProjectSequence(backlog_id, pt_id, principal.getName());
 
